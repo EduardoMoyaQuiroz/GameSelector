@@ -44,7 +44,8 @@ public class Inicio extends javax.swing.JFrame {
         
         // Obtengo los archivos
         ImagenFondo fondoPantalla = ImagenFondo.imagenFondo();
-        fondoPantalla.configuracion(this.jPanel1, "ArbolDos.gif", "Girl.gif", "megaman.gif");
+        fondoPantalla.configuracion(this.jPanel1, "ArbolDos.gif", "Girl.gif", "orbe.png");
+        //fondoPantalla.configuracion(this.jPanel1, "ArbolDos.gif", "Girl.gif", "megaman.gif");
         // Añado archivos a la pantalla
         ((Pantalla)this.jPanel1).getComponente().add(fondoPantalla);
     }
@@ -76,18 +77,61 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new udemy.poo.pantalla.Pantalla(tiempo);
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        buttonNaveGame = new javax.swing.JButton();
+        buttonOrbesGames = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Lato", 3, 18)); // NOI18N
+        jLabel1.setText("Spirit Orbs Search");
+
+        jLabel2.setFont(new java.awt.Font("Century Schoolbook L", 3, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(235, 33, 225));
+        jLabel2.setText("Spirit Orbs Search!");
+
+        buttonNaveGame.setText("Juego Nave");
+        buttonNaveGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonNaveGameActionPerformed(evt);
+            }
+        });
+
+        buttonOrbesGames.setText("Juego Orbes");
+        buttonOrbesGames.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOrbesGamesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(345, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonNaveGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonOrbesGames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel1)))
+                .addGap(64, 64, 64))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 365, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jLabel1)
+                .addGap(96, 96, 96)
+                .addComponent(jLabel2)
+                .addGap(55, 55, 55)
+                .addComponent(buttonNaveGame)
+                .addGap(29, 29, 29)
+                .addComponent(buttonOrbesGames)
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -103,6 +147,14 @@ public class Inicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonNaveGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNaveGameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonNaveGameActionPerformed
+
+    private void buttonOrbesGamesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOrbesGamesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonOrbesGamesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,6 +192,10 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonNaveGame;
+    private javax.swing.JButton buttonOrbesGames;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

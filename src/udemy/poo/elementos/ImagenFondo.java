@@ -40,16 +40,16 @@ public class ImagenFondo implements Actions {
     
     private void ImagenFondo() {}
     
-    public void configuracion(Component componente, String archivo, String personaje, String megaman) {
+    public void configuracion(Component componente, String archivo, String personaje, String orbe) {
         this.componente = componente;
         tracker = new MediaTracker(componente);
         Toolkit herram = Toolkit.getDefaultToolkit();
         imagen = herram.getImage(getClass().getResource("/udemy/poo/recursos/" + archivo));
         imagenDos = herram.getImage(getClass().getResource("/udemy/poo/recursos/" + personaje));
-        imagenTres = herram.getImage(getClass().getResource("/udemy/poo/recursos/" + megaman));
+        imagenTres = herram.getImage(getClass().getResource("/udemy/poo/recursos/" + orbe));
         tracker.addImage(imagen, 1);
         tracker.addImage(imagenDos, 2);
-        tracker.addImage(imagenTres, 3);
+        //tracker.addImage(imagenTres, 3);
         
         // Espera a que todas las imagenes sean cargadas
         try {
@@ -64,7 +64,7 @@ public class ImagenFondo implements Actions {
     public void pintar(Graphics2D g2) {
         g2.drawImage(imagen, 0, 0, componente.getWidth(), componente.getHeight(), null);
         g2.drawImage(imagenDos, x + 40, 90, 270, 368, null);
-        g2.drawImage(imagenTres, x, 230, 50, 50, null);
+        g2.drawImage(imagenTres, 440, 130, 50, 50, null);
     }
 
     @Override
@@ -79,10 +79,11 @@ public class ImagenFondo implements Actions {
 
     @Override
     public void calculo() {
-        if(x > componente.getWidth() + 20)
+        /*if(x > componente.getWidth() + 20)
             x =- 20;
         else
             x += 4;
+        */
     }
     
 }
