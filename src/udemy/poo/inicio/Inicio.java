@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
 import udemy.poo.elementos.ImagenFondo;
+import udemy.poo.game.GameModelNave;
 import udemy.poo.pantalla.Pantalla;
 
 /**
@@ -44,7 +45,7 @@ public class Inicio extends javax.swing.JFrame {
         
         // Obtengo los archivos
         ImagenFondo fondoPantalla = ImagenFondo.imagenFondo();
-        fondoPantalla.configuracion(this.jPanel1, "ArbolDos.gif", "Girl.gif", "orbe.png");
+        fondoPantalla.configuracion(this.jPanel1, "ArbolDos.gif", "Girl.gif", "OrbeReflex.png");
         //fondoPantalla.configuracion(this.jPanel1, "ArbolDos.gif", "Girl.gif", "megaman.gif");
         // Añado archivos a la pantalla
         ((Pantalla)this.jPanel1).getComponente().add(fondoPantalla);
@@ -149,7 +150,18 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonNaveGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNaveGameActionPerformed
-        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                GameModelNave dialog = new GameModelNave(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        dialog.dispose() ;
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
     }//GEN-LAST:event_buttonNaveGameActionPerformed
 
     private void buttonOrbesGamesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOrbesGamesActionPerformed

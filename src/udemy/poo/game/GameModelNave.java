@@ -5,18 +5,76 @@
  */
 package udemy.poo.game;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
+import udemy.poo.elementos.Burbujas;
+import udemy.poo.elementos.ImagenFondo;
+import udemy.poo.elementos.ImagenFondoGameN;
+import udemy.poo.elementos.ImagenFondoGaming;
+import udemy.poo.pantalla.Pantalla;
+
 /**
  *
  * @author eduardo
  */
 public class GameModelNave extends javax.swing.JDialog {
-
+    
+    private int fps = 30;
+    private Timer tiempo;
+    
     /**
      * Creates new form GameModelNave
      */
     public GameModelNave(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        ActionListener accion = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                refresh();
+            }
+        };
+        
+        tiempo = new Timer(10, accion);
+        tiempo.start();
+        setTitle("Game Nave");
+        
         initComponents();
+        
+        setResizable(false);
+        setLocationRelativeTo(this);
+        jPanel1.requestFocusInWindow();
+        
+        ImagenFondoGameN fondoImagen = ImagenFondoGameN.imagenFondo();
+        fondoImagen.configuracion(this.jPanel1, "AvanceComplete.gif", "SecondPrincess.gif");
+        
+        ImagenFondoGaming fondoGame = ImagenFondoGaming.imagenFondo();
+        fondoGame.configuracion(this.jPanel2, "AvanceComplete.gif");
+        
+        Burbujas burbujas = Burbujas.getBurbujas();
+        burbujas.configurar(this.jPanel2, "orbe.png");
+        
+        ((Pantalla)this.jPanel1).getComponente().add(fondoImagen);
+        ((Pantalla)this.jPanel2).getComponente().add(fondoGame);
+        ((Pantalla)this.jPanel2).getComponente().add(burbujas);
+        
+    }
+    
+    private void refresh() {
+        long inicio;
+        long transcurrido;
+        long espera;
+        
+        try {
+            inicio = System.nanoTime();
+            this.jPanel1.repaint();
+            transcurrido = System.nanoTime();
+            espera = 1000 / fps - (transcurrido - inicio) / 1000000;
+            Thread.sleep(espera);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        
     }
 
     /**
@@ -28,8 +86,8 @@ public class GameModelNave extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new udemy.poo.pantalla.Pantalla(tiempo);
+        jPanel2 = new udemy.poo.pantalla.Pantalla(tiempo);
         jMenuBar1 = new javax.swing.JMenuBar();
         backHomeButton = new javax.swing.JMenu();
         infoButton = new javax.swing.JMenu();
