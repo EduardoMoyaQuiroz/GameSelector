@@ -93,19 +93,19 @@ public class Burbujas implements Actions {
 
     @Override
     public void teclado(KeyEvent event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void raton(MouseEvent event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void calculo() {
         for(Burbuja elemento : elementos) {
             if(elemento.isAbajo()) {
-                if(elemento.getYy() > (this.componente.getHeight() - diametro)) {
+                if(elemento.getYy() >= this.componente.getHeight() - diametro) {
                     elemento.setArriba(true);
                     elemento.setAbajo(false);
                 }
@@ -127,13 +127,13 @@ public class Burbujas implements Actions {
             }
             
             if(elemento.isIzquierda()) {
-                if(elemento.getXx() >= 0) {
+                if(elemento.getXx() <= 0) {
                     elemento.setDerecha(true);
                     elemento.setIzquierda(false);
                 }
                 else {
-                    elemento.setYy(elemento.getXx() - desplazamiento);
-                    elemento.setCy(elemento.getXx() + radio);
+                    elemento.setXx(elemento.getXx() - desplazamiento);
+                    elemento.setCx(elemento.getXx() + radio);
                 }
             }
             
@@ -143,62 +143,62 @@ public class Burbujas implements Actions {
                     elemento.setDerecha(false);                   
                 }
                 else {
-                    elemento.setYy(elemento.getXx() + desplazamiento);
-                    elemento.setCy(elemento.getXx() + radio);
+                    elemento.setXx(elemento.getXx() + desplazamiento);
+                    elemento.setCx(elemento.getXx() + radio);
                 }
             }
-            
-            for (int i = 0; i < elementos.size(); i++) {
-                Burbuja actual = elementos.get(i);
-                
-                for (int j = 0; j < elementos.size(); j++) {
-                    Burbuja objetivo = elementos.get(j);
-                    
-                    int xUnoXDos = (int) Math.pow((actual.getCx() - objetivo.getCx()), 2);
-                    int yUnoYDos = (int) Math.pow((actual.getCy() - objetivo.getCy()), 2);
-                    int distancia = (int) Math.sqrt(xUnoXDos + yUnoYDos);
-                    
-                    if(distancia <= diametro) {
-                        if(objetivo.isAbajo()) {
-                            objetivo.setArriba(true);
-                            objetivo.setAbajo(false);
-                        }
-                        else if(objetivo.isArriba()) {
-                            objetivo.setArriba(false);
-                            objetivo.setAbajo(true);
-                        }
-                        else if(objetivo.isDerecha()) {
-                            objetivo.setIzquierda(true);
-                            objetivo.setDerecha(false);
-                        }
-                        else if(objetivo.isIzquierda()) {
-                            objetivo.setDerecha(true);
-                            objetivo.setIzquierda(false);
-                        }
+        }    
+        
+        for (int i = 0; i < elementos.size(); i++) {
+            Burbuja actual = elementos.get(i);
+
+            for (int j = i + 1; j < elementos.size(); j++) {
+                Burbuja objetivo = elementos.get(j);
+
+                int xUnoxDos = (int) Math.pow((actual.getCx() - objetivo.getCx()), 2);
+                int yUnoyDos = (int) Math.pow((actual.getCy() - objetivo.getCy()), 2);
+                int distancia = (int) Math.sqrt(xUnoxDos + yUnoyDos);
+
+                if(distancia <= diametro) {
+                    if(objetivo.isAbajo()) {
+                        objetivo.setArriba(true);
+                        objetivo.setAbajo(false);
                     }
-                    
-                    if(actual.isAbajo()) {
-                        actual.setArriba(true);
-                        actual.setAbajo(false);
+                    else if(objetivo.isArriba()) {
+                        objetivo.setArriba(false);
+                        objetivo.setAbajo(true);
                     }
-                    else if(actual.isArriba()) {
-                        actual.setArriba(false);
-                        actual.setAbajo(true);
+                    else if(objetivo.isDerecha()) {
+                        objetivo.setDerecha(false);
+                        objetivo.setIzquierda(true);
                     }
-                    else if(actual.isDerecha()) {
-                        actual.setIzquierda(true);
-                        actual.setDerecha(false);
+                    else if(objetivo.isIzquierda()) {
+                        objetivo.setIzquierda(false);
+                        objetivo.setDerecha(true);
                     }
-                    else if(actual.isIzquierda()) {
-                        actual.setDerecha(true);
-                        actual.setIzquierda(false);
-                    }
-                    
-                    if(i == 0) {
-                        objetivo.setEliminar(true);
-                        objetivo.setWhoDeleted("orbe");
-                        // efecto de sonido
-                    }
+                }
+
+                if(actual.isAbajo()) {
+                    actual.setArriba(true);
+                    actual.setAbajo(false);
+                }
+                else if(actual.isArriba()) {
+                    actual.setArriba(false);
+                    actual.setAbajo(true);
+                }
+                else if(actual.isDerecha()) {
+                    actual.setDerecha(false);
+                    actual.setIzquierda(true);
+                }
+                else if(actual.isIzquierda()) {
+                    actual.setIzquierda(false);
+                    actual.setDerecha(true);
+                }
+
+                if(i == 0) {
+                    objetivo.setEliminar(true);
+                    objetivo.setWhoDeleted("orbe");
+                    // efecto de sonido
                 }
             }
         }

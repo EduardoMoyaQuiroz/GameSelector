@@ -64,7 +64,7 @@ public class ImagenFondo implements Actions {
     public void pintar(Graphics2D g2) {
         g2.drawImage(imagen, 0, 0, componente.getWidth(), componente.getHeight(), null);
         g2.drawImage(imagenDos, x + 40, 90, 270, 368, null);
-        g2.drawImage(imagenTres, 440, 130, 50, 50, null);
+        g2.drawImage(imagenTres, 440, 130, 68, 101, null);
     }
 
     @Override
