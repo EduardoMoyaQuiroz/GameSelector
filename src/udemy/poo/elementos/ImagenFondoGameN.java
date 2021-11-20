@@ -61,7 +61,7 @@ public class ImagenFondoGameN implements Actions {
     @Override
     public void pintar(Graphics2D g2) {
         g2.drawImage(imagen, 0, 0, componente.getWidth(), componente.getHeight(), null);
-        g2.drawImage(imagenDos, x + 800, 40, 300, 368, null);
+        g2.drawImage(imagenDos, x + 860, 40, 300, 368, null);
     }
 
     @Override

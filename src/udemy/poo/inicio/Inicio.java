@@ -13,6 +13,7 @@ import javax.swing.Timer;
 import udemy.poo.elementos.ImagenFondo;
 import udemy.poo.game.GameModelNave;
 import udemy.poo.pantalla.Pantalla;
+import udemy.poo.sonido.Musica;
 
 /**
  *
@@ -22,6 +23,9 @@ public class Inicio extends javax.swing.JFrame {
     
     private int fps = 30;
     private Timer tiempo;
+    private Musica musica = new Musica("InTheEnd.mp3", "FinalFantasy.mp3");
+    Thread hilo = new Thread(musica);
+    
     
     /**
      * Creates new form Inicio
@@ -49,6 +53,8 @@ public class Inicio extends javax.swing.JFrame {
         //fondoPantalla.configuracion(this.jPanel1, "ArbolDos.gif", "Girl.gif", "megaman.gif");
         // Añado archivos a la pantalla
         ((Pantalla)this.jPanel1).getComponente().add(fondoPantalla);
+        
+        hilo.start();
     }
     
     private void refresh() {
@@ -110,25 +116,27 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(345, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonNaveGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonOrbesGames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel1)))
-                .addGap(64, 64, 64))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonNaveGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonOrbesGames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(64, 64, 64))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(116, 116, 116))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel1)
-                .addGap(96, 96, 96)
+                .addGap(152, 152, 152)
                 .addComponent(jLabel2)
-                .addGap(55, 55, 55)
+                .addGap(34, 34, 34)
                 .addComponent(buttonNaveGame)
                 .addGap(29, 29, 29)
                 .addComponent(buttonOrbesGames)
@@ -162,6 +170,8 @@ public class Inicio extends javax.swing.JFrame {
                 dialog.setVisible(true);
             }
         });
+        hilo.stop();
+        this.dispose();
     }//GEN-LAST:event_buttonNaveGameActionPerformed
 
     private void buttonOrbesGamesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOrbesGamesActionPerformed

@@ -33,7 +33,7 @@ public class Puntuacion implements Actions {
     public void pintar(Graphics2D g2) {
         g2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         g2.drawString("Nave: " + nave, 0, 20);
-        g2.drawString("Orbe: " + orbe, 300, 20);
+        g2.drawString("Orbe: " + orbe, 600, 20);
     }
 
     @Override
